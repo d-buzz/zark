@@ -13,6 +13,7 @@ var block = {
     chain:[]
 }
 exports.block = block
+
 const args = require('minimist')(process.argv.slice(2));
 const express = require('express');
 const stringify = require('json-stable-stringify');
@@ -23,6 +24,7 @@ var ipfs = new IPFS({
     port: config.ipfsport,
     protocol: config.ipfsprotocol
 })
+
 console.log(`IPFS: ${config.ipfshost == 'ipfs' ? 'DockerIPFS' : config.ipfshost}:${config.ipfsport}`)
 exports.ipfs = ipfs;
 const rtrades = require('./rtrades');
@@ -99,7 +101,9 @@ let TXID = {
     cleaner: [],
 }},
 }
+
 exports.TXID = TXID
+
 const API = require('./routes/api');
 const HR = require('./processing_routes/index')
 const { NFT, Chron, Watchdog } = require('./helpers');
@@ -701,7 +705,6 @@ function dynStart(account) {
         })
     })
 }
-
 
 //pulls state from IPFS, loads it into memory, starts the block processor
 function startWith(hash, second) {
